@@ -6,3 +6,8 @@ user: cynthia
 
 two:
 content: MyText
+user: cynthia
+
+three: 
+content: "Hi, I'm Jane."
+user: jane 
