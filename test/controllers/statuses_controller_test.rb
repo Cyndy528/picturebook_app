@@ -2,9 +2,7 @@ require 'test_helper'
 
 class StatusesControllerTest < ActionController::TestCase
   setup do
-    before_filter :authenticate_user!, only: [:new]
-
-    @status = statuses(:one)
+  @status = statuses(:one)
   end
 
   test "should get index" do
@@ -19,13 +17,20 @@ class StatusesControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
+  test "should be logged in to post a status" do 
+  post :create, status: { content: "Hello" }
+  assert_response :redirect
+  assert_redirected_to new_user_session_path
+  end 
+
   test "should render the new page when logged in" do 
     sign_in users (:cynthia)
     get :new
     assert_response :success
   end 
 
-  test "should create status" do
+  test "should create status when logged in" do
+    sign_in users(:cynthia)
     assert_difference('Status.count') do
       post :create, status: { content: @status.content }
     end
@@ -38,16 +43,24 @@ class StatusesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should get edit when logged in" do
+    sign_in users(:cynthia)
     get :edit, id: @status
     assert_response :success
   end
 
-  test "should update status" do
-    patch :update, id: @status, status: { content: @status.content}
-    assert_redirected_to status_path(assigns(:status))
+  test "should redirect status update when not logged in" do
+    patch :update, id: @status, status: { content: @status.content }
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
   end
 
+  test "should update status when logged in" do 
+    sign_in users(:cynthia)
+    put :update, id: @status, status: { content: @status.content }
+    assert_redirected_to status_path(assigns(:status))
+  end 
+  
   test "should destroy status" do
     assert_difference('Status.count', -1) do
       delete :destroy, id: @status
