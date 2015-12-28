@@ -1,10 +1,9 @@
 # Create fixture and setting up seed data to test 
 
 cynthia: 
-	first_name : 'Cynthia'
-	last_name : 'Salinas'
-	email: 'cynthia@email.com'
-	profile_name: 'cynthiasalinas'
-	password: 'password'
-	password_confirmation: 'password'
-	
+first_name : Cynthia
+last_name : Salinas
+email: cynthia@email.com
+profile_name: cynthiasalinas
+password: password
+password_confirmation: password
