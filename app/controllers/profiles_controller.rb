@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
   	@user = User.find_by_profile_name(params[:id])
   	# conditional logic 
   	if @user 
+  		# scoping 
   		@statuses = @user.statuses.all 
   		render action: :show
   	else 
