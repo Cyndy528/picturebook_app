@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-content: MyText
+content: "This is cynthia user status test"
 user: cynthia
 
 two:
-content: MyText
+content: "this is second user status test"
 user: cynthia
 
 three: 

@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+
+  include Gravtastic
+  gravtastic 
+  end 
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -20,11 +25,12 @@ class User < ActiveRecord::Base
     downcased_email = stripped_email.downcased_email
     hash = Digest::MD5.hexdigest(downcased_email)
 
-    "http://gravatar.com/avatar/#{hast}"
-  end
-
+    "http://gravatar.com/avatar/#{gravatar_id}"
+  end 
 
 end 
+
+
 
 
 
